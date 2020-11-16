@@ -45,6 +45,9 @@ ramips_setup_interfaces()
 	gnubee,gb-pc2)
 		ucidef_set_interface_lan "lan1 lan2"
 		;;
+	jcg,y2)
+		ucidef_set_interface_lan "lan4 lan3 lan2 lan1" "wan"
+		;;
 	linksys,re6500|\
 	netgear,wac104)
 		ucidef_set_interface_lan "lan1 lan2 lan3 lan4"
@@ -112,6 +115,11 @@ ramips_setup_macs()
 	iodata,wnpr2600g)
 		wan_mac=$(mtd_get_mac_ascii u-boot-env wanaddr)
 		label_mac=$wan_mac
+		;;
+	jcg,y2)
+		lan_mac=$(cat /sys/class/net/eth0/address)
+		wan_mac=$(mtd_get_mac_binary factory 0xe006)
+		label_mac=$(mtd_get_mac_binary factory 0x4)
 		;;
 	linksys,ea7300-v1|\
 	linksys,ea7300-v2|\
