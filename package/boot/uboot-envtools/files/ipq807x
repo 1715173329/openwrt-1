@@ -8,6 +8,7 @@ touch /etc/config/ubootenv
 board=$(board_name)
 
 case "$board" in
+xiaomi,ax3000|\
 xiaomi,ax3600|\
 xiaomi,ax9000)
 	idx="$(find_mtd_index 0:appsblenv)"

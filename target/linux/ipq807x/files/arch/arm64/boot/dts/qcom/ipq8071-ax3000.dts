@@ -1,0 +1,38 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+
+/dts-v1/;
+
+#include "ipq8071-ax3600.dts"
+
+/ {
+	model = "Xiaomi Redmi AX6 AX3000";
+	compatible = "xiaomi,ax3000", "qcom,ipq8074";
+
+	leds {
+		/delete-node/ aiot;
+
+		system-blue {
+			gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
+		};
+
+		system-yellow {
+			gpios = <&tlmm 22 GPIO_ACTIVE_HIGH>;
+		};
+
+		network-blue {
+			gpios = <&tlmm 42 GPIO_ACTIVE_HIGH>;
+		};
+
+		network-yellow {
+			gpios = <&tlmm 43 GPIO_ACTIVE_HIGH>;
+		};
+	};
+};
+
+&pcie0 {
+	status = "disabled";
+};
+
+&wifi {
+	qcom,ath11k-calibration-variant = "Xiaomi-AX3000";
+};
